@@ -4,25 +4,25 @@ public class App_Recursive {
 
     public static int minFinder(int[] arr){
         int index = 0;
-        int size = arr.length;
-        int temp = 1001;
-        int i=0;
+        int size = arr.length; //getting the size of the array into a variable
+        int temp = 1001; //creating temporary variable with a number bigger than the biggest one from the array, for further comparison
+        int i=0; //creating index variable for proceeding with the recursive method
         
-        return recMinFinder(arr, size, index, temp, i);
+        return minFinder_recursive(arr, size, index, temp, i); //running the recursive method, passing in the variables created
     }
 
-    public static int recMinFinder(int[] arr, int size, int index, int temp, int i){
+    public static int minFinder_recursive(int[] arr, int size, int index, int temp, int i){
         if (size == 1){
-            return index;
+            return index; //if the array size variable reaches 1, returns current index value
         }
 
-        if (arr[i]>arr[i+1] && arr[i+1]<temp){
-            temp = arr[i+1];
-            index = i+1;
+        if (arr[i]>arr[i+1] && arr[i+1]<temp){ //if the next item's value is lower than the current, AND if it's lower then the temporary variable's value
+            temp = arr[i+1]; //replace temporary variable's value by the current one
+            index = i+1; //replace indexes' value by i+1
 
-            return recMinFinder(arr, size-1, index, temp, i+1);
+            return minFinder_recursive(arr, size-1, index, temp, i+1); //then run recursiveness with the variables up to date
         } else {
-            return recMinFinder(arr, size-1, index, temp, i+1);
+            return minFinder_recursive(arr, size-1, index, temp, i+1); //else, //just run recursiveness with the variables up to date
         }
     }
 
