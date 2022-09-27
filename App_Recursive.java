@@ -17,7 +17,7 @@ public class App_Recursive {
         }
 
         if (arr[i]>arr[i+1] && arr[i+1]<temp){ //if the next item's value is lower than the current, AND if it's lower then the temporary variable's value
-            temp = arr[i+1]; //replace temporary variable's value by the current one
+            temp = arr[i+1]; //replace temporary variable's value by the i+1's one
             index = i+1; //replace indexes' value by i+1
 
             return minFinder_recursive(arr, size-1, index, temp, i+1); //then run recursiveness with the variables up to date
