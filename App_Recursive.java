@@ -1,22 +1,32 @@
 import java.util.Random; // this creates random for our program 
-public class App {
+public class App_Recursive {
 
 
     public static int minFinder(int[] arr){
         int index = 0;
-        int temp= 1001;
+        int size = arr.length;
+        int temp = 1001;
+        int i=0;
+        
+        return recMinFinder(arr, size, index, temp, i);
+    }
 
-        for (int i=0;i<100;i++){
-            for (int j = i+1; j<100;j++){
-                if (arr[i]>arr[j] && arr[j]<temp){
-                    index = i;
-                    temp = arr[j];
-                }
-            }
+    public static int recMinFinder(int[] arr, int size, int index, int temp, int i){
+        if (size == 1){
+            return index;
         }
 
-        return index;
+        if (arr[i]>arr[i+1] && arr[i+1]<temp){
+            temp = arr[i+1];
+            index = i+1;
+
+            return recMinFinder(arr, size-1, index, temp, i+1);
+        } else {
+            return recMinFinder(arr, size-1, index, temp, i+1);
+        }
     }
+
+
     public static void main(String[] args) throws Exception {
         int[] myArr = new int[100];
         Random myRand = new Random(); // creating Random object
@@ -25,7 +35,7 @@ public class App {
         int max = 1000;
 
         int indexMin=0;
-
+        
         for (int i = 0; i < myArr.length; i++) {
             myArr[i] = myRand.nextInt(max-min+1) + min; // storing random integers in an array
          }
@@ -34,5 +44,5 @@ public class App {
          //now we find the minimum calling the function you wrote:
          indexMin=minFinder(myArr);
          System.out.println("The minimum is at location: "+indexMin+" The value is: "+myArr[indexMin]); 
-        }
+    }
 }
